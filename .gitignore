@@ -1,0 +1,70 @@
+# ===========================
+# Global ignores for all projects
+# ===========================
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+*.tlog
+
+# Env
+.env
+.env.*.local
+.env.local
+
+# IDEs
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ===========================
+# API Project (SalesIntel.API - .NET 8)
+# ===========================
+SalesIntel.API/bin/
+SalesIntel.API/obj/
+SalesIntel.API/*.db
+SalesIntel.API/*.pdb
+SalesIntel.API/Properties/launchSettings.json
+SalesIntel.API/*.DotSettings.user
+SalesIntel.API/appsettings.*.json
+SalesIntel.API/.vs/
+
+# Optional: Ignore secrets
+SalesIntel.API/secrets.json
+
+# ===========================
+# Web Project (SalesIntel.Web - React 19)
+# ===========================
+SalesIntel.Web/node_modules/
+SalesIntel.Web/build/
+SalesIntel.Web/dist/
+SalesIntel.Web/.next/
+SalesIntel.Web/.turbo/
+SalesIntel.Web/.cache/
+SalesIntel.Web/.env.local
+SalesIntel.Web/.env.development.local
+SalesIntel.Web/.env.production.local
+SalesIntel.Web/.env.test.local
+
+# Coverage
+SalesIntel.Web/coverage/
+
+# Mac System files
+SalesIntel.Web/.DS_Store

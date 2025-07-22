@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: salesintel-postgres
+    environment:
+      POSTGRES_DB: salesintel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - salesintel-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: salesintel-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=salesintel;Username=postgres;Password=dev_password
+    ports:
+      - "5000:8080"
+    depends_on:
+      - postgres
+    networks:
+      - salesintel-network
+
+volumes:
+  postgres_data:
+
+networks:
+  salesintel-network:
+    driver: bridge
