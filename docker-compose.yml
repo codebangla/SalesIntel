@@ -1,23 +1,19 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  postgres:
-    image: postgres:15
-    container_name: salesintel-postgres
-    environment:
-      POSTGRES_DB: salesintel
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: dev_password
+  web:
+    build:
+      context: ./SalesIntel.Web
+      dockerfile: Dockerfile
+    container_name: salesintel-web
     ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - "3000:80"
     networks:
       - salesintel-network
 
   api:
     build:
-      context: .
+      context: ./SalesIntel.API
       dockerfile: Dockerfile
     container_name: salesintel-api
     environment:
@@ -27,6 +23,20 @@ services:
       - "5000:8080"
     depends_on:
       - postgres
+    networks:
+      - salesintel-network
+
+  postgres:
+    image: postgres:15
+    container_name: salesintel-postgres
+    environment:
+      POSTGRES_DB: salesintel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - salesintel-network
 
